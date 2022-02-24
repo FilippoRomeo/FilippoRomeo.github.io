@@ -1,18 +1,18 @@
-import * as THREE from '/node_modules/three';
+import * as THREE from 'three';
 import moment from 'moment-timezone';
 
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
 import { ParametricGeometry } from 'three/examples/jsm/geometries/ParametricGeometry';
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 
-import { UnrealBloomPass } from "/node_modules/three/examples/jsm/postprocessing/UnrealBloomPass.js";
-import { EffectComposer } from '/node_modules/three/examples/jsm/postprocessing/EffectComposer.js';
-import { RenderPass } from '/node_modules/three/examples/jsm/postprocessing/RenderPass.js';
-import { GlitchPass } from '/node_modules/three/examples/jsm/postprocessing/GlitchPass.js';
+import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+import { GlitchPass } from 'three/examples/jsm/postprocessing/GlitchPass.js';
 
-import { GUI } from '/node_modules/three/examples/jsm/libs/lil-gui.module.min.js';
-import { OrbitControls } from '/node_modules/three/examples/jsm/controls/OrbitControls.js';
-import { Sky } from '/node_modules/three/examples/jsm/objects/Sky.js';
+import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { Sky } from 'three/examples/jsm/objects/Sky.js';
 
 let camera, scene, renderer, composer;
 let object, light;
