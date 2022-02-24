@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Lip</title>
+
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+    <link type="text/css" rel="stylesheet" href="./style.css" />
+
+</head>
+
+<body>
+    <div class="current">
+        <p><b><span id="position">Calculating...</span> </b> </p>
+
+        <p> <b><span id="region"></span></b> </p>
+        <p><b><span id="lat&lon"></span></b></p>
+        <p><b><span id="isp&org"></span></b></p>
+        <p><b><span id="status" style="color: rgb(0, 255, 0);"></span><span id="fail" style="color: rgb(255,0,0);"></span></b></p>
+
+        <p id="date"></p>
+        <p id="sunpos"></p>
+        <p>----------------</p>
+        <p id="antiloc"></p>
+        <p id="antidate"></p>
+        <p id="antisunpos"></p>
+    </div>
+
+    <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
+
+</body>
+<script type="module" src="./suncalc.js"></script>
+<script type="module" src="./main.js"></script>
+
+</html>

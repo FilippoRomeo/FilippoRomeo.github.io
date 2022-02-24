@@ -1,0 +1,179 @@
+<!-- page.html -->
+<!doctype html>
+<html>
+
+<head>
+    <title>Which city am I in?</title>
+
+</head>
+
+<body>
+    <p> Where am I? </p>
+    <p> You are in <b><span id="city"></span> </b>in <b><span id="country"></span></b></p>
+    <p> Country code <b><span id="countryCode"></span></b></p>
+    <p> You are in this lat <b><span id="lat"></span></b></p>
+    <p> You are in this lon <b><span id="lon"></span></b></p>
+    <p> Using <b><span id="isp"></span></b></p>
+    <p> and <b><span id="org"></span></b></p>
+    <p> ip <b><span id="query"></span></b></p>
+    <p> REgion code<b><span id="region"></span></b></p>
+    <p> region name <b><span id="regionName"></span></b></p>
+    <p> Request status <b><span id="status"></span></b></p>
+    <p> Time zone <b><span id="timezone"></span></b></p>
+    <p> ZIP <b><span id="zip"></span></b></p>
+
+
+    <p id="demo"></p>
+    <script>
+        function makeRequest(method, url) {
+            return new Promise(function(resolve, reject) {
+                let xhr = new XMLHttpRequest();
+                xhr.open(method, url);
+                xhr.onload = function() {
+                    if (this.status >= 200 && this.status < 300) {
+                        resolve(xhr.response);
+                    } else {
+                        reject({
+                            status: this.status,
+                            statusText: xhr.statusText
+                        });
+                    }
+                };
+                xhr.onerror = function() {
+                    reject({
+                        status: this.status,
+                        statusText: xhr.statusText
+                    });
+                };
+                xhr.send();
+            });
+        }
+
+        async function doAjaxThings() {
+            // await code here
+            let result = await makeRequest("GET", "http://ip-api.com/json/");
+            // code below here will only execute when await makeRequest() finished loading
+            result = JSON.parse(result);
+
+            if (result.status === "success") {
+                htmlhandler(result)
+                sky(result);
+            } else {
+                console.log(1);
+            }
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            doAjaxThings();
+
+            // create and manipulate your DOM here. doAjaxThings() will run asynchronously and not block your DOM rendering
+            // document.createElement("...");
+            // document.getElementById("...").addEventListener(...);
+        });
+
+        function sky(data) {
+            console.log(data.lat)
+        }
+
+        // window.addEventListener('load', (event) => {
+        //     getuinfo();
+        // });
+
+        // function getuinfo() {
+        //     var xhr = new XMLHttpRequest();
+        //     xhr.responseType = 'json';
+        //     xhr.open('GET', 'http://ip-api.com/json/', true);
+        //     x = xhr.onreadystatechange = function(e) {
+        //         if (xhr.readyState === 4) {
+        //             // Request is complete -- did it work?
+        //             if (xhr.status === 200) {
+        //                 // Success
+        //                 let result = xhr.response;
+        //                 htmlhandler(result)
+        //             } else {
+        //                 document.getElementById("City").innerHTML = "Sorry there is a problem.\n Please notify me";
+        //             }
+        //         }
+        //     };
+        //     xhr.send(null);
+        // }
+
+        function htmlhandler(result) {
+            document.getElementById("city").innerHTML = result.city;
+            document.getElementById("country").innerHTML = result.country;
+            document.getElementById("countryCode").innerHTML = result.countryCode;
+            document.getElementById("isp").innerHTML = result.isp;
+            document.getElementById("lat").innerHTML = result.lat;
+            document.getElementById("lon").innerHTML = result.lon;
+            document.getElementById("org").innerHTML = result.org;
+            document.getElementById("region").innerHTML = result.region;
+            document.getElementById("regionName").innerHTML = result.regionName;
+            document.getElementById("query").innerHTML = result.query;
+            document.getElementById("status").innerHTML = result.status;
+            document.getElementById("timezone").innerHTML = result.timezone;
+            document.getElementById("zip").innerHTML = result.zip;
+
+        }
+
+        // http://ip-api.com/json/
+        // http://jsonip.com/?callback
+
+        // fetch("http://ip-api.com/json/")
+        //     .then(
+        //         response => response.json() // .json(), .blob(), etc.
+        //     ).then(
+        //         text => console.log(text["ip"]), // Handle here
+        //         text => document.getElementById("city").innerHTML = text["ip"],
+        //         text => ip += text["ip"]
+        //     );
+    </script>
+</body>
+
+</html>
+
+
+<!-- 
+window.addEventListener('load', (event) => {
+    getuinfo();
+});
+
+//getuinfo calls htmlhandler initSky function 
+function getuinfo() {
+    var xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
+    xhr.open('GET', 'http://ip-api.com/json/', true);
+    xhr.onreadystatechange = function(e) {
+
+        if (xhr.readyState === 4) {
+            // Request is complete -- did it work?
+            if (xhr.status >= 200 && xhr.status < 300) {
+                // Success
+                htmlhandler(xhr.response, xhr.status, xhr.statusText);
+                initSky(xhr.response);
+
+            } else {
+                document.getElementById("position").innerHTML = "Sorry there is a problem.\n Please notify me";
+                document.getElementById("fail").innerHTML = xhr.statusText + " " + xhr.status;
+            }
+        }
+    };
+    xhr.onerror = function(e) {
+        document.getElementById("position").innerHTML = "Sorry there is a problem.\n Please notify me";
+        document.getElementById("fail").innerHTML = xhr.statusText + " " + xhr.status;
+    };
+
+    xhr.send(null);
+}
+
+
+function htmlhandler(result, status, statusText) {
+    document.getElementById("position").innerHTML = result.city + ", " + result.country + " " + result.countryCode;
+    document.getElementById("region").innerHTML = result.zip + " " + result.regionName + " " + result.region;
+    document.getElementById("lat&lon").innerHTML = result.lat + "," + result.lon + " " + result.timezone;
+    document.getElementById("isp&org").innerHTML = result.isp + " " + result.org;
+    document.getElementById("status").innerHTML = result.query + " " + result.status + " " + status+ " " +statusText;
+}
+
+
+
+
+-->
