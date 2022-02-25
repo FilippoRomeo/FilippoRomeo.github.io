@@ -1,7 +1,12 @@
-import * as THREE from 'https://cdn.skypack.dev/three';
+import * as THREE from 'https://unpkg.com/three@0.138.0/build/three.js';
 
-import EffectComposer from 'https://cdn.skypack.dev/three-effectcomposer';
+import { EffectComposer } from 'https://unpkg.com/@types/three@0.138.0/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from 'https://unpkg.com/@types/three@0.138.0/examples/jsm/postprocessing/RenderPass.js';
+import { GlitchPass } from 'https://unpkg.com/@types/three@0.138.0/examples/jsm/postprocessing/GlitchPass.js';
 
+import { GUI } from 'https://unpkg.com/three@0.138.0/examples/jsm/libs/lil-gui.module.min.js';
+import { OrbitControls } from 'https://unpkg.com/three@0.138.0/examples/jsm/controls/OrbitControls.js';
+import { Sky } from 'https://unpkg.com/three@0.138.0/examples/jsm/objects/Sky.js';
 
 let camera, scene, renderer, composer;
 let object, light;
@@ -72,7 +77,7 @@ function initSky(data) {
 
 
     //Sky
-    sky = new THREE.Sky();
+    sky = new Sky();
     sky.scale.setScalar(450000);
     scene.add(sky);
     sun = new THREE.Vector3();
@@ -109,7 +114,7 @@ function initSky(data) {
 
     }
 
-    const gui = new THREE.GUI();
+    const gui = new GUI();
 
     gui.add(effectController, 'turbidity', 0.0, 20.0, 0.1).onChange(guiChanged);
     gui.add(effectController, 'rayleigh', 0.0, 4, 0.001).onChange(guiChanged);
@@ -171,9 +176,9 @@ function init() {
     // postprocessing
 
     composer = new EffectComposer(renderer);
-    composer.addPass(new THREE.RenderPass(scene, camera));
+    composer.addPass(new RenderPass(scene, camera));
 
-    glitchPass = new THREE.GlitchPass();
+    glitchPass = new GlitchPass();
     composer.addPass(glitchPass);
 
 
@@ -181,7 +186,7 @@ function init() {
     scene.add(helper);
 
 
-    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    const controls = new OrbitControls(camera, renderer.domElement);
     controls.addEventListener('change', render);
     //controls.maxPolarAngle = Math.PI / 2;
     controls.enableZoom = true;
