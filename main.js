@@ -63,16 +63,9 @@ function initSky(data) {
 
     //TODO function update clock realtime
 
-    var d = new Date();
-    var m = new Date(moment(d, 'MMMM DD, YYYY HH:mm:ss'));
-
-
     //TODO SunCalc time function to update effect based on the period (morning, evening night) 
-    var times = SunCalc.getTimes(new Date(), data.lat, data.lon);
-    let dusk = SunCalc.getPosition(times.dusk, data.lat, data.lon);
+    let dusk = SunCalc.getPosition(new Date(), data.lat, data.lon);
 
-    //sun position
-    var sunPos = SunCalc.getPosition(m, data.lat, data.lon);
 
     //Sky
     sky = new Sky();
@@ -87,8 +80,8 @@ function initSky(data) {
         rayleigh: 3,
         mieCoefficient: 0.005,
         mieDirectionalG: 0.7,
-        elevation: sunPos.altitude,
-        azimuth: sunPos.azimuth,
+        elevation: dusk.altitude,
+        azimuth: dusk.azimuth,
         exposure: renderer.toneMappingExposure
     };
 
