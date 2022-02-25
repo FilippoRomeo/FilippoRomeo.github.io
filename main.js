@@ -1,6 +1,6 @@
 import * as THREE from 'https://cdn.skypack.dev/three';
 
-import Effectcomposer from 'https://cdn.skypack.dev/three-effectcomposer';
+import EffectComposer from 'https://cdn.skypack.dev/three-effectcomposer';
 
 
 let camera, scene, renderer, composer;
