@@ -54,7 +54,9 @@ function makeRequest(method, url) {
             if (this.status >= 200 && this.status < 300) {
                 resolve(xhr.response);
             } else {
-                console.log(1)
+                document.getElementById("position").innerHTML = "Sorry there is a problem.\n Please notify the owner";
+                document.getElementById("fail").innerHTML = xhr.status + " " + xhr.statusText;
+                console.log(xhr)
             }
         };
         xhr.onerror = function() {
@@ -63,11 +65,7 @@ function makeRequest(method, url) {
                 statusText: xhr.statusText
             });
         };
-        if (xhr.status !== 200) {
-            document.getElementById("position").innerHTML = "Sorry there is a problem.\n Please notify the owner";
-            document.getElementById("fail").innerHTML = xhr.status + " " + xhr.statusText;
-            console.log(xhr)
-        };
+        xhr.send();
     });
 }
 
@@ -107,7 +105,7 @@ function initSky(data) {
     //TODO function update clock realtime
 
     //TODO SunCalc time function to update effect based on the period (morning, evening night) 
-    let dusk = SunCalc.getPosition(new Date(), data.lat, data.lon);
+    let dusk = SunCalc.getPosition(new Date(), data.latitude, data.longitude);
 
 
     //Sky
