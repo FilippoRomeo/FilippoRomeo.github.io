@@ -46,7 +46,7 @@ let mouseX = 0,
 init();
 render();
 
-function awaitmakeRequest(method, url) {
+function makeRequest(method, url) {
     return new Promise(function(resolve, reject) {
         let xhr = new XMLHttpRequest();
         xhr.open(method, url);
