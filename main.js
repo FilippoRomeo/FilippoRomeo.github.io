@@ -1,8 +1,8 @@
 import * as THREE from 'https://unpkg.com/three@0.138.0/build/three.js';
 
-import { EffectComposer } from 'https://unpkg.com/@types/three@0.138.0/examples/jsm/postprocessing/EffectComposer.js';
-import { RenderPass } from 'https://unpkg.com/@types/three@0.138.0/examples/jsm/postprocessing/RenderPass.js';
-import { GlitchPass } from 'https://unpkg.com/@types/three@0.138.0/examples/jsm/postprocessing/GlitchPass.js';
+import { EffectComposer } from 'https://unpkg.com/three@0.138.0/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from 'https://unpkg.com/three@0.138.0/examples/jsm/postprocessing/RenderPass.js';
+import { GlitchPass } from 'https://unpkg.com/three@0.138.0/examples/jsm/postprocessing/GlitchPass.js';
 
 import { GUI } from 'https://unpkg.com/three@0.138.0/examples/jsm/libs/lil-gui.module.min.js';
 import { OrbitControls } from 'https://unpkg.com/three@0.138.0/examples/jsm/controls/OrbitControls.js';
