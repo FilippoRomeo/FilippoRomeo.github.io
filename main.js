@@ -80,13 +80,9 @@ async function doAjaxThings() {
     // code below here will only execute when await makeRequest() finished loading
     if (result) {
         console.log(result)
-        console.log(typeof(JSON.parse(result)))
-        console.log(typeof(JSON.parse(result.response)))
+        console.log(typeof(result))
 
         result = JSON.parse(result);
-        console.log(result);
-        console.log(result.status);
-        console.log(result.response);
         console.log(result);
 
         htmlhandler(result)
