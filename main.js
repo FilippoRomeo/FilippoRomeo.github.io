@@ -1,5 +1,7 @@
 import * as THREE from 'https://cdn.skypack.dev/three';
 
+import Effectcomposer from 'https://cdn.skypack.dev/three-effectcomposer';
+
 
 let camera, scene, renderer, composer;
 let object, light;
@@ -168,7 +170,7 @@ function init() {
 
     // postprocessing
 
-    composer = new THREE.EffectComposer(renderer);
+    composer = new EffectComposer(renderer);
     composer.addPass(new THREE.RenderPass(scene, camera));
 
     glitchPass = new THREE.GlitchPass();
