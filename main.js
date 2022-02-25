@@ -80,6 +80,7 @@ async function doAjaxThings() {
     // code below here will only execute when await makeRequest() finished loading
     if (result) {
         result = JSON.parse(result);
+        console.log(result)
         htmlhandler(result)
         initSky(result)
     };
