@@ -1,12 +1,29 @@
-import * as THREE from 'three';
+import * as THREE from "https://cdn.skypack.dev/three@0.132.2";
 
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
-import { GlitchPass } from 'three/examples/jsm/postprocessing/GlitchPass.js';
+import { OrbitControls } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/OrbitControls.js";
+import { EffectComposer } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/postprocessing/EffectComposer.js";
+import { RenderPass } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/postprocessing/RenderPass.js'";
+import { GlitchPass } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/postprocessing/GlitchPass.js";
+import { GUI } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/libs/lil-gui.module.min.js";
+import { Sky } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/objects/Sky.js";
 
-import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { Sky } from 'three/examples/jsm/objects/Sky.js';
+// import { EffectComposer } from 'https://unpkg.com/three@0.138.0/examples/jsm/postprocessing/EffectComposer.js';
+// import { RenderPass } from 'https://unpkg.com/three@0.138.0/examples/jsm/postprocessing/RenderPass.js';
+// import { GlitchPass } from 'https://unpkg.com/three@0.138.0/examples/jsm/postprocessing/GlitchPass.js';
+
+// import { GUI } from 'https://unpkg.com/three@0.138.0/examples/jsm/libs/lil-gui.module.min.js';
+// import { OrbitControls } from 'https://unpkg.com/three@0.138.0/examples/jsm/controls/OrbitControls.js';
+// import { Sky } from 'https://unpkg.com/three@0.138.0/examples/jsm/objects/Sky.js';
+
+// import * as THREE from 'three';
+
+// import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
+// import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+// import { GlitchPass } from 'three/examples/jsm/postprocessing/GlitchPass.js';
+
+// import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js';
+// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+// import { Sky } from 'three/examples/jsm/objects/Sky.js';
 
 // import * as THREE from 'https://unpkg.com/three@0.138.0/build/three.js';
 
