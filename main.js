@@ -1,12 +1,22 @@
-import * as THREE from 'https://unpkg.com/three@0.138.0/build/three.js';
+import * as THREE from 'three';
 
-import { EffectComposer } from 'https://unpkg.com/three@0.138.0/examples/jsm/postprocessing/EffectComposer.js';
-import { RenderPass } from 'https://unpkg.com/three@0.138.0/examples/jsm/postprocessing/RenderPass.js';
-import { GlitchPass } from 'https://unpkg.com/three@0.138.0/examples/jsm/postprocessing/GlitchPass.js';
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+import { GlitchPass } from 'three/examples/jsm/postprocessing/GlitchPass.js';
 
-import { GUI } from 'https://unpkg.com/three@0.138.0/examples/jsm/libs/lil-gui.module.min.js';
-import { OrbitControls } from 'https://unpkg.com/three@0.138.0/examples/jsm/controls/OrbitControls.js';
-import { Sky } from 'https://unpkg.com/three@0.138.0/examples/jsm/objects/Sky.js';
+import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { Sky } from 'three/examples/jsm/objects/Sky.js';
+
+// import * as THREE from 'https://unpkg.com/three@0.138.0/build/three.js';
+
+// import { EffectComposer } from 'https://unpkg.com/three@0.138.0/examples/jsm/postprocessing/EffectComposer.js';
+// import { RenderPass } from 'https://unpkg.com/three@0.138.0/examples/jsm/postprocessing/RenderPass.js';
+// import { GlitchPass } from 'https://unpkg.com/three@0.138.0/examples/jsm/postprocessing/GlitchPass.js';
+
+// import { GUI } from 'https://unpkg.com/three@0.138.0/examples/jsm/libs/lil-gui.module.min.js';
+// import { OrbitControls } from 'https://unpkg.com/three@0.138.0/examples/jsm/controls/OrbitControls.js';
+// import { Sky } from 'https://unpkg.com/three@0.138.0/examples/jsm/objects/Sky.js';
 
 let camera, scene, renderer, composer;
 let object, light;
@@ -18,7 +28,7 @@ let mouseX = 0,
 init();
 render();
 
-function makeRequest(method, url) {
+function awaitmakeRequest(method, url) {
     return new Promise(function(resolve, reject) {
         let xhr = new XMLHttpRequest();
         xhr.open(method, url);
@@ -35,9 +45,13 @@ function makeRequest(method, url) {
                 statusText: xhr.statusText
             });
         };
-
-        xhr.send();
-
+        if (xhr.send()) {
+            xhr.send();
+        } else {
+            document.getElementById("position").innerHTML = "Sorry there is a problem.\n Please notify me";
+            document.getElementById("fail").innerHTML = xhr.status;
+            console.log(xhr)
+        };
     });
 }
 
