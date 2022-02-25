@@ -75,6 +75,7 @@ function makeRequest(method, url) {
 
 async function doAjaxThings() {
     // await code here
+    //http://ip-api.com/json/ https not free 
     let result = await makeRequest("GET", "https://freegeoip.app/json/");
     // code below here will only execute when await makeRequest() finished loading
     if (result) {
@@ -85,11 +86,11 @@ async function doAjaxThings() {
 }
 
 function htmlhandler(result) {
-    document.getElementById("position").innerHTML = result.city + ", " + result.country + " " + result.countryCode;
-    document.getElementById("region").innerHTML = result.zip + " " + result.regionName + " " + result.region;
-    document.getElementById("lat&lon").innerHTML = result.lat + "," + result.lon + " " + result.timezone;
+    document.getElementById("position").innerHTML = result.city + ", " + result.country_name + " " + result.country_code;
+    document.getElementById("region").innerHTML = result.zip_code + " " + result.region_name + " " + result.region_code;
+    document.getElementById("lat&lon").innerHTML = result.latitude + "," + result.longitude + " " + result.timezone;
     document.getElementById("isp&org").innerHTML = result.isp + " " + result.org;
-    document.getElementById("status").innerHTML = result.query + " " + result.status;
+    document.getElementById("status").innerHTML = result.ip + " " + result.status;
 }
 
 function failhtmlhandler(result) {
