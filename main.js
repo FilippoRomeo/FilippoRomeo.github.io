@@ -1,6 +1,5 @@
 import * as THREE from 'https://cdn.skypack.dev/three';
 
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { GlitchPass } from 'three/examples/jsm/postprocessing/GlitchPass.js';
 
@@ -177,7 +176,7 @@ function init() {
 
     // postprocessing
 
-    composer = new EffectComposer(renderer);
+    composer = new THREE.EffectComposer(renderer);
     composer.addPass(new RenderPass(scene, camera));
 
     glitchPass = new GlitchPass();
