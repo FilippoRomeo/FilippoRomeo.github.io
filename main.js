@@ -65,6 +65,7 @@ function makeRequest(method, url) {
         };
         if (xhr.send()) {
             xhr.send();
+            console.log(xhr)
         } else {
             document.getElementById("position").innerHTML = "Sorry there is a problem.\n Please notify the owner";
             document.getElementById("fail").innerHTML = xhr.status;
@@ -81,7 +82,6 @@ async function doAjaxThings() {
     if (result) {
         console.log(result)
         console.log(typeof(result))
-
         result = JSON.parse(result);
         console.log(result);
 
