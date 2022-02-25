@@ -14,8 +14,6 @@ let glitchPass;
 let sky, sun;
 let mouseX = 0,
     mouseY = 0;
-let windowHalfX = window.innerWidth / 2;
-let windowHalfY = window.innerHeight / 2;
 
 init();
 render();
