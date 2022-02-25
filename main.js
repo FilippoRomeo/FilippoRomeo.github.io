@@ -1,13 +1,5 @@
 import * as THREE from 'https://cdn.skypack.dev/three';
 
-import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
-import { GlitchPass } from 'three/examples/jsm/postprocessing/GlitchPass.js';
-
-import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { Sky } from 'three/examples/jsm/objects/Sky.js';
-
-
 
 let camera, scene, renderer, composer;
 let object, light;
@@ -78,7 +70,7 @@ function initSky(data) {
 
 
     //Sky
-    sky = new Sky();
+    sky = new THREE.Sky();
     sky.scale.setScalar(450000);
     scene.add(sky);
     sun = new THREE.Vector3();
@@ -115,7 +107,7 @@ function initSky(data) {
 
     }
 
-    const gui = new GUI();
+    const gui = new THREE.GUI();
 
     gui.add(effectController, 'turbidity', 0.0, 20.0, 0.1).onChange(guiChanged);
     gui.add(effectController, 'rayleigh', 0.0, 4, 0.001).onChange(guiChanged);
@@ -177,9 +169,9 @@ function init() {
     // postprocessing
 
     composer = new THREE.EffectComposer(renderer);
-    composer.addPass(new RenderPass(scene, camera));
+    composer.addPass(new THREE.RenderPass(scene, camera));
 
-    glitchPass = new GlitchPass();
+    glitchPass = new THREE.GlitchPass();
     composer.addPass(glitchPass);
 
 
@@ -187,7 +179,7 @@ function init() {
     scene.add(helper);
 
 
-    const controls = new OrbitControls(camera, renderer.domElement);
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.addEventListener('change', render);
     //controls.maxPolarAngle = Math.PI / 2;
     controls.enableZoom = true;
