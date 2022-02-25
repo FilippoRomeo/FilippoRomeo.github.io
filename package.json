@@ -1,21 +1,21 @@
 {
-  "name": "site",
-  "private": true,
-  "version": "0.0.0",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "devDependencies": {
-    "vite": "^2.8.0"
-  },
-  "dependencies": {
-    "@maxmind/geoip2-node": "^3.4.0",
-    "gh-pages": "^3.2.3",
-    "moment-timezone": "^0.5.34",
-    "n": "^8.0.2",
-    "stable": "^0.1.8",
-    "three": "^0.137.5"
-  }
+    "name": "site",
+    "private": true,
+    "version": "0.0.0",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+    },
+    "devDependencies": {
+        "vite": "^2.8.0"
+    },
+    "dependencies": {
+        "@maxmind/geoip2-node": "^3.4.0",
+        "gh-pages": "^3.2.3",
+        "moment-timezone": "^0.5.34",
+        "n": "^8.0.2",
+        "stable": "^0.1.8",
+        "three": "^0.137.5"
+    }
 }
