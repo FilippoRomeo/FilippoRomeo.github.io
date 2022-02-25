@@ -63,12 +63,9 @@ function makeRequest(method, url) {
                 statusText: xhr.statusText
             });
         };
-        if (xhr.send()) {
-            xhr.send();
-            console.log(xhr)
-        } else {
+        if (xhr.status !== 200) {
             document.getElementById("position").innerHTML = "Sorry there is a problem.\n Please notify the owner";
-            document.getElementById("fail").innerHTML = xhr.status;
+            document.getElementById("fail").innerHTML = xhr.status + " " + xhr.statusText;
             console.log(xhr)
         };
     });
@@ -93,9 +90,8 @@ async function doAjaxThings() {
 function htmlhandler(result) {
     document.getElementById("position").innerHTML = result.city + ", " + result.country_name + " " + result.country_code;
     document.getElementById("region").innerHTML = result.zip_code + " " + result.region_name + " " + result.region_code;
-    document.getElementById("lat&lon").innerHTML = result.latitude + "," + result.longitude + " " + result.timezone;
-    document.getElementById("isp&org").innerHTML = result.isp + " " + result.org;
-    document.getElementById("status").innerHTML = result.ip + " " + result.status;
+    document.getElementById("lat&lon").innerHTML = result.latitude + "," + result.longitude + " " + result.time_zone;
+    document.getElementById("status").innerHTML = result.ip + " ";
 }
 
 function failhtmlhandler(result) {
