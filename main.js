@@ -79,8 +79,15 @@ async function doAjaxThings() {
     let result = await makeRequest("GET", "https://freegeoip.app/json/");
     // code below here will only execute when await makeRequest() finished loading
     if (result) {
+        console.log(typeof(response))
+        console.log(typeof(JSON.parse(response)))
+
         result = JSON.parse(result);
-        console.log(result)
+        console.log(result);
+        console.log(result.status);
+        console.log(result.response);
+        console.log(result);
+
         htmlhandler(result)
         initSky(result)
     };
