@@ -75,7 +75,7 @@ function makeRequest(method, url) {
 
 async function doAjaxThings() {
     // await code here
-    let result = await makeRequest("GET", "https://ip-api.com/json/");
+    let result = await makeRequest("GET", "http://ip-api.com/json/");
     // code below here will only execute when await makeRequest() finished loading
     if (result) {
         result = JSON.parse(result);
