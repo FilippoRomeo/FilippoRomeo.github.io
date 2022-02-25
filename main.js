@@ -66,7 +66,7 @@ function makeRequest(method, url) {
         if (xhr.send()) {
             xhr.send();
         } else {
-            document.getElementById("position").innerHTML = "Sorry there is a problem.\n Please notify me";
+            document.getElementById("position").innerHTML = "Sorry there is a problem.\n Please notify the owner";
             document.getElementById("fail").innerHTML = xhr.status;
             console.log(xhr)
         };
