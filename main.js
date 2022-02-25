@@ -4,8 +4,9 @@ import { OrbitControls } from "https://cdn.skypack.dev/three@0.132.2/examples/js
 import { EffectComposer } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/postprocessing/EffectComposer.js";
 import { RenderPass } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/postprocessing/RenderPass.js";
 import { GlitchPass } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/postprocessing/GlitchPass.js";
-import { GUI } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/libs/lil-gui.module.min.js";
+import { GUI } from 'https://unpkg.com/three@0.138.0/examples/jsm/libs/lil-gui.module.min.js';
 import { Sky } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/objects/Sky.js";
+
 
 // import { EffectComposer } from 'https://unpkg.com/three@0.138.0/examples/jsm/postprocessing/EffectComposer.js';
 // import { RenderPass } from 'https://unpkg.com/three@0.138.0/examples/jsm/postprocessing/RenderPass.js';
