@@ -1,5 +1,4 @@
 import * as THREE from '/node_modules/three';
-import moment from 'moment-timezone';
 
 import { EffectComposer } from '/node_modules/three/examples/jsm/postprocessing/EffectComposer.js';
 import { RenderPass } from '/node_modules/three/examples/jsm/postprocessing/RenderPass.js';
