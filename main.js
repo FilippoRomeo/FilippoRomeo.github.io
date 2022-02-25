@@ -35,7 +35,9 @@ function makeRequest(method, url) {
                 statusText: xhr.statusText
             });
         };
+
         xhr.send();
+
     });
 }
 
@@ -43,12 +45,22 @@ async function doAjaxThings() {
     // await code here
     let result = await makeRequest("GET", "http://ip-api.com/json/");
     // code below here will only execute when await makeRequest() finished loading
-    result = JSON.parse(result);
-    htmlhandler(result)
-    initSky(result);
+    if (result) {
+        result = JSON.parse(result);
+        htmlhandler(result)
+        initSky(result)
+    };
 }
 
 function htmlhandler(result) {
+    document.getElementById("position").innerHTML = result.city + ", " + result.country + " " + result.countryCode;
+    document.getElementById("region").innerHTML = result.zip + " " + result.regionName + " " + result.region;
+    document.getElementById("lat&lon").innerHTML = result.lat + "," + result.lon + " " + result.timezone;
+    document.getElementById("isp&org").innerHTML = result.isp + " " + result.org;
+    document.getElementById("status").innerHTML = result.query + " " + result.status;
+}
+
+function failhtmlhandler(result) {
     document.getElementById("position").innerHTML = result.city + ", " + result.country + " " + result.countryCode;
     document.getElementById("region").innerHTML = result.zip + " " + result.regionName + " " + result.region;
     document.getElementById("lat&lon").innerHTML = result.lat + "," + result.lon + " " + result.timezone;

@@ -8,11 +8,9 @@
         "preview": "vite preview"
     },
     "devDependencies": {
-        "vite": "^2.8.0"
+        "vite": "^2.8.4"
     },
     "dependencies": {
-        "@maxmind/geoip2-node": "^3.4.0",
-        "gh-pages": "^3.2.3",
         "n": "^8.0.2",
         "stable": "^0.1.8",
         "three": "^0.137.5"
