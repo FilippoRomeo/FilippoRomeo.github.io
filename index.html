@@ -34,6 +34,12 @@
 
 <script type="module" src="./ml.js"></script>
 <script type="module" src="./suncalc.js"></script>
+<script>
+    require('dotenv').config({
+        path: require('find-config')('.env')
+    })
+</script>
+
 <script type="module" src="./main.js"></script>
 
 
