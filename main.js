@@ -7,15 +7,6 @@ import { GlitchPass } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/p
 import { GUI } from 'https://unpkg.com/three@0.138.0/examples/jsm/libs/lil-gui.module.min.js';
 import { Sky } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/objects/Sky.js";
 
-
-// import { EffectComposer } from 'https://unpkg.com/three@0.138.0/examples/jsm/postprocessing/EffectComposer.js';
-// import { RenderPass } from 'https://unpkg.com/three@0.138.0/examples/jsm/postprocessing/RenderPass.js';
-// import { GlitchPass } from 'https://unpkg.com/three@0.138.0/examples/jsm/postprocessing/GlitchPass.js';
-
-// import { GUI } from 'https://unpkg.com/three@0.138.0/examples/jsm/libs/lil-gui.module.min.js';
-// import { OrbitControls } from 'https://unpkg.com/three@0.138.0/examples/jsm/controls/OrbitControls.js';
-// import { Sky } from 'https://unpkg.com/three@0.138.0/examples/jsm/objects/Sky.js';
-
 // import * as THREE from 'three';
 
 // import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
@@ -25,16 +16,6 @@ import { Sky } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/objects/
 // import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js';
 // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 // import { Sky } from 'three/examples/jsm/objects/Sky.js';
-
-// import * as THREE from 'https://unpkg.com/three@0.138.0/build/three.js';
-
-// import { EffectComposer } from 'https://unpkg.com/three@0.138.0/examples/jsm/postprocessing/EffectComposer.js';
-// import { RenderPass } from 'https://unpkg.com/three@0.138.0/examples/jsm/postprocessing/RenderPass.js';
-// import { GlitchPass } from 'https://unpkg.com/three@0.138.0/examples/jsm/postprocessing/GlitchPass.js';
-
-// import { GUI } from 'https://unpkg.com/three@0.138.0/examples/jsm/libs/lil-gui.module.min.js';
-// import { OrbitControls } from 'https://unpkg.com/three@0.138.0/examples/jsm/controls/OrbitControls.js';
-// import { Sky } from 'https://unpkg.com/three@0.138.0/examples/jsm/objects/Sky.js';
 
 let camera, scene, renderer, composer;
 let object, light;
@@ -92,6 +73,8 @@ function htmlhandler(result) {
     document.getElementById("status").innerHTML = result.ip + " ";
 }
 
+//handle if ccoord missing/api requuest
+
 function failhtmlhandler(result) {
     document.getElementById("position").innerHTML = result.city + ", " + result.country + " " + result.countryCode;
     document.getElementById("region").innerHTML = result.zip + " " + result.regionName + " " + result.region;
@@ -105,7 +88,16 @@ function initSky(data) {
     //TODO function update clock realtime
 
     //TODO SunCalc time function to update effect based on the period (morning, evening night) 
+
+    var times = SunCalc.getTimes(new Date(), 51.5, -0.1);
+    console.log(times);
+    console.log(new Date());
+
     let dusk = SunCalc.getPosition(new Date(), data.latitude, data.longitude);
+
+    let azimuthPos = dusk.azimuth * 180 / Math.PI
+
+    console.log(dusk)
 
 
     //Sky
@@ -122,7 +114,7 @@ function initSky(data) {
         mieCoefficient: 0.005,
         mieDirectionalG: 0.7,
         elevation: dusk.altitude,
-        azimuth: dusk.azimuth,
+        azimuth: -azimuthPos,
         exposure: renderer.toneMappingExposure
     };
 
@@ -148,6 +140,7 @@ function initSky(data) {
 
     const gui = new GUI();
 
+
     gui.add(effectController, 'turbidity', 0.0, 20.0, 0.1).onChange(guiChanged);
     gui.add(effectController, 'rayleigh', 0.0, 4, 0.001).onChange(guiChanged);
     gui.add(effectController, 'mieCoefficient', 0.0, 0.1, 0.001).onChange(guiChanged);
@@ -172,16 +165,21 @@ function init() {
     object = new THREE.Object3D();
     scene.add(object);
     //objects
-    const geometry = new THREE.SphereGeometry(1, 4, 4);
+    let geometry;
 
-
+    //random word generator, twitter api 
     for (let i = 0; i < 100; i++) {
 
-        const material = new THREE.MeshPhongMaterial({ color: Math.random(), flatShading: true });
 
-        const mesh = new THREE.Mesh(geometry, material);
+        geometry = new THREE.WireframeGeometry(new THREE.BoxBufferGeometry(Math.floor(Math.random() * 10) + 1, Math.floor(Math.random() * 10) + 1, ), 8);
+
+        var rcolor = Math.floor(Math.random() * 16777215).toString(16);
+
+        const material = new THREE.LineBasicMaterial({ color: "#" + rcolor, flatShading: true });
+
+        const mesh = new THREE.LineSegments(geometry, material);
         mesh.position.set(Math.random() - 0.5, Math.random() - 0.25, Math.random() - 0.3).normalize();
-        mesh.position.multiplyScalar(Math.random() * 40000);
+        mesh.position.multiplyScalar(Math.random() * 4000);
         mesh.rotation.set(Math.random() * 2, Math.random() * 2, Math.random() * 2);
         mesh.scale.x = mesh.scale.y = mesh.scale.z = Math.random() * 50;
         object.add(mesh);
@@ -202,10 +200,8 @@ function init() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 0.5;
+    renderer.toneMappingExposure = 0.5 * Math.random();
     document.body.appendChild(renderer.domElement);
-
-    // postprocessing
 
     composer = new EffectComposer(renderer);
     composer.addPass(new RenderPass(scene, camera));
@@ -214,21 +210,20 @@ function init() {
     composer.addPass(glitchPass);
 
 
-    const helper = new THREE.GridHelper(10000, 5, 0xffffff, 0xffffff);
-    scene.add(helper);
+    // const helper = new THREE.GridHelper(10000, 5, 0xffffff, 0xffffff);
+    // scene.add(helper);
 
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.addEventListener('change', render);
     //controls.maxPolarAngle = Math.PI / 2;
-    controls.enableZoom = true;
-    controls.enablePan = true;
-
+    controls.enableZoom = false;
+    controls.enablePan = false;
 
 
     doAjaxThings();
-    animate();
     window.addEventListener('resize', onWindowResize);
+
 
 }
 
