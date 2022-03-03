@@ -1,22 +1,24 @@
 // year, month, day, hour=12, min=0, sec=0
 
-function sunPosition(lat, long, date) {
+export function sunPosition(lat, long, date) {
     const pi = Math.PI
     const twopi = 2 * pi;
     const deg2rad = pi / 180;
 
+    const ndate = new Date(date)
+
     // Get Julian
-    Date.prototype.getJulian = function() {
-        return (this / 86400000) - (this.getTimezoneOffset() / 1440) + 2440587.5;
+    function getJulian(date) {
+        return (date / 86400000) - (date.getTimezoneOffset() / 1440) + 2440587.5;
     };
 
-    var julian = date.getJulian(); //get Julian date
+    var julian = getJulian(ndate); //get Julian date
 
     // The input to the Atronomer's almanach is the difference between
     // the Julian date and JD 2451545.0 (noon, 1 January 2000)
 
     let time = julian - 51545.;
-    let hour = date.getHours();
+    let hour = ndate.getHours();
 
     //Mean longitude
 
@@ -36,7 +38,7 @@ function sunPosition(lat, long, date) {
     let eclong = mnlong + (1.915 * Math.sin(mnanom)) + (0.020 * Math.sin(2 * mnanom))
     eclong = eclong % 360;
     if (eclong < 0) { eclong = eclong + 360 };
-    oblqec = 23.429 - (0.0000004 * time);
+    let oblqec = 23.429 - (0.0000004 * time);
     eclong = eclong * deg2rad;
     oblqec = oblqec * deg2rad;
 
@@ -47,7 +49,7 @@ function sunPosition(lat, long, date) {
     let ra = Math.atan(num / den);
     if (den < 0) { ra = ra + pi };
     if (den >= 0 && num < 0) { ra = ra + twopi };
-    dec = Math.asin(Math.sin(oblqec) * Math.sin(eclong));
+    let dec = Math.asin(Math.sin(oblqec) * Math.sin(eclong));
 
 
     //    Local coordinates
@@ -83,8 +85,8 @@ function sunPosition(lat, long, date) {
     if (!cosAzPos) { az = pi - az }
 
     var result = {
-        elevation: el / deg2rad,
-        alzmuth: az / deg2rad,
+        azimuth: az / deg2rad,
+        altitude: el / deg2rad,
         latitude: lat / deg2rad
     }
 

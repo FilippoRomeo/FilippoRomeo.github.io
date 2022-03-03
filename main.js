@@ -7,6 +7,8 @@ import { GlitchPass } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/p
 import { GUI } from 'https://unpkg.com/three@0.138.0/examples/jsm/libs/lil-gui.module.min.js';
 import { Sky } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/objects/Sky.js";
 
+import { sunPosition } from "./tojs"
+
 
 // import * as THREE from 'three';
 
@@ -87,20 +89,16 @@ function failhtmlhandler(result) {
 function initSky(data) {
 
     //TODO function update clock realtime
-
     //TODO SunCalc time function to update effect based on the period (morning, evening night) 
 
 
+    var sunPos = sunPosition(data.latitude, data.longitude, new Date(), );
 
-    var times = SunCalc.getTimes(new Date(), data.latitude, data.longitude);
-    console.log(times);
-    console.log(new Date());
+    console.log(data.latitude);
+    console.log(data.longitude);
 
-    let dusk = SunCalc.getPosition(times.solarNoon, data.latitude, data.longitude);
 
-    // let azimuthPos = dusk.azimuth * 180 / Math.PI
-
-    console.log(dusk)
+    console.log(sunPos);
 
 
     //Sky
@@ -116,8 +114,8 @@ function initSky(data) {
         rayleigh: 3,
         mieCoefficient: 0.005,
         mieDirectionalG: 0.7,
-        elevation: dusk.altitude,
-        azimuth: dusk.azimuth,
+        elevation: sunPos.altitude,
+        azimuth: sunPos.azimuth,
         exposure: renderer.toneMappingExposure
     };
 
@@ -173,7 +171,6 @@ function init() {
     //random word generator, twitter api 
     for (let i = 0; i < 100; i++) {
 
-
         geometry = new THREE.WireframeGeometry(new THREE.BoxBufferGeometry(Math.floor(Math.random() * 10) + 1, Math.floor(Math.random() * 10) + 1, ), 8);
 
         var rcolor = Math.floor(Math.random() * 16777215).toString(16);
@@ -197,7 +194,6 @@ function init() {
     light.position.set(1, 1, 1);
     scene.add(light);
 
-
     renderer = new THREE.WebGLRenderer();
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -212,10 +208,8 @@ function init() {
     glitchPass = new GlitchPass();
     composer.addPass(glitchPass);
 
-
     // const helper = new THREE.GridHelper(10000, 5, 0xffffff, 0xffffff);
     // scene.add(helper);
-
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.addEventListener('change', render);
