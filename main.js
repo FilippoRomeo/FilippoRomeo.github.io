@@ -7,7 +7,7 @@ import { GlitchPass } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/p
 import { GUI } from 'https://unpkg.com/three@0.138.0/examples/jsm/libs/lil-gui.module.min.js';
 import { Sky } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/objects/Sky.js";
 
-import { sunPosition } from "./tojs"
+import { sunPosition } from "./sunPosition"
 
 
 // import * as THREE from 'three';
