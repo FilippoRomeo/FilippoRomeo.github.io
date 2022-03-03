@@ -76,9 +76,9 @@ sunPosition <- function(year, month, day, hour=12, min=0, sec=0,
   az <- asin(-cos(dec) * sin(ha) / cos(el))
 
   cosAzPos <- (0 <= sin(dec) - sin(el) * sin(lat))
-sinAzNeg <- (sin(az) < 0)
-az[cosAzPos & sinAzNeg] <- az[cosAzPos & sinAzNeg] + twopi
-az[!cosAzPos] <- pi - az[!cosAzPos]
+  sinAzNeg <- (sin(az) < 0)
+  az[cosAzPos & sinAzNeg] <- az[cosAzPos & sinAzNeg] + twopi
+  az[!cosAzPos] <- pi - az[!cosAzPos]
 
   el <- el / deg2rad
   az <- az / deg2rad
