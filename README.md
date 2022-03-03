@@ -2,8 +2,7 @@
 
 A Three.js site using Vite and openAPI to request info about the user location.
 
-When the page is load it shows static square shapes, if we turn or move in our fixed point we can see the shaps moving and glitch effect appear. It sends a get request to freegeoip.app which return a jeson document containg information relative to the location (lat and long) of te user. Then thhe library suncalc.jsis used to calcullate the sun postion and place it in the scene, that that whene the page is accessed we can see the sun placed in different position. 
-The site is not mobile/location coordinate proof but it can still display the informations.
+The website shows what appear to be static square shapes in a sky-like environment, if we turn or move in our fixed point, we can see the shaps moving, and a glitch effect appear. It sends a get request to freeGeoIP.app, which returns a JSON document containing information relative to the user's location (lat and long). The library suncalc.js is used to calculate the sun position and place it in the scene so that when the page is accessed, we can see the sun set in a different part. The site is not mobile/location coordinate proof, but it can display the information.
 
 To install and start the master (ES6) branch
 

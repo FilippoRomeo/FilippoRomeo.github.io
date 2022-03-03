@@ -90,13 +90,15 @@ function initSky(data) {
 
     //TODO SunCalc time function to update effect based on the period (morning, evening night) 
 
-    var times = SunCalc.getTimes(new Date(), 51.5, -0.1);
+
+
+    var times = SunCalc.getTimes(new Date(), data.latitude, data.longitude);
     console.log(times);
     console.log(new Date());
 
-    let dusk = SunCalc.getPosition(new Date(), data.latitude, data.longitude);
+    let dusk = SunCalc.getPosition(times.solarNoon, data.latitude, data.longitude);
 
-    let azimuthPos = dusk.azimuth * 180 / Math.PI
+    // let azimuthPos = dusk.azimuth * 180 / Math.PI
 
     console.log(dusk)
 
@@ -115,7 +117,7 @@ function initSky(data) {
         mieCoefficient: 0.005,
         mieDirectionalG: 0.7,
         elevation: dusk.altitude,
-        azimuth: -azimuthPos,
+        azimuth: dusk.azimuth,
         exposure: renderer.toneMappingExposure
     };
 
