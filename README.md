@@ -6,6 +6,8 @@ The website shows what appear to be static square shapes in a sky-like environme
 
 To install and start the master (ES6) branch
 
+Due to poor result of the library, I opted to write my own way to calculate the altitude and azimuth. [Reference(https://stackoverflow.com/questions/8708048/position-of-the-sun-given-time-of-day-latitude-and-longitude)]
+
 ```bash
 git clone https://github.com/FilippoRomeo/FilippoRomeo.github.io
 cd FilippoRomeo.github.io
