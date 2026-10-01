@@ -1,23 +1,39 @@
-# Lip Shaping
+# Lip Shaping / Spatial WebGL Study
 
-An experimental Three.js / WebGL study built with Vite. The scene combines spatial movement, glitch-like visual behaviour, geolocation, and solar-position calculations to make the environment respond to where and when it is viewed.
+An early browser-based 3D experiment combining **Three.js, viewer movement, geolocation, solar position, and visual distortion**.
+
+The scene presents geometric forms that initially read as static. As the viewing angle changes, their spatial relationship shifts and a glitch-like image emerges. Location and time are also used to influence the position of the sun in the scene.
+
+[View the experiment](https://filipporomeo.github.io/)
 
 ## Concept
 
-The experience presents apparently static square forms inside a sky-like environment. As the viewer moves or changes orientation, the spatial relationship between those forms shifts and visual distortion appears.
+```text
+viewer movement ──────────────┐
+                              ├──► Three.js scene ──► shifting spatial image
+location + time ─► sun model ─┘
+```
 
-The original implementation also requested approximate latitude and longitude from a geolocation service, then used solar-position calculations to place the sun differently depending on location and time. After experimenting with SunCalc, the project also explored a custom altitude / azimuth calculation.
+The project explores two related ideas:
 
-This is an older creative-coding experiment, so third-party services referenced by the original implementation may no longer behave exactly as they did when it was built.
+1. an image can be distributed across space rather than placed on a flat surface;
+2. the same scene can behave differently depending on the viewer's position, geographic location, and time.
+
+## Spatial behaviour
+
+The composition uses separate square forms positioned in 3D. From some angles they appear disconnected; from others their relationship becomes legible. Changing the camera orientation therefore changes the image rather than simply changing the view of it.
+
+## Location and sunlight
+
+The original implementation requested approximate latitude and longitude from a geolocation service and used solar-position calculations to place the sun in the scene.
+
+After testing SunCalc, the project also explored calculating solar altitude and azimuth directly.
+
+Because this is an older experiment, external geolocation services referenced by the original implementation may no longer behave exactly as they did when it was built.
 
 ## Stack
 
-- Three.js
-- Vite
-- JavaScript
-- WebGL
-- geolocation data
-- solar-position calculations
+`JavaScript` `Three.js` `WebGL` `Vite` `geolocation` `solar-position calculations`
 
 ## Run locally
 
@@ -28,16 +44,16 @@ npm install
 npm run dev
 ```
 
-For a production build:
+Create a production build with:
 
 ```bash
 npm run build
 ```
 
-## Live experiment
+## Context
 
-https://filipporomeo.github.io/
+This repository is part of my earlier creative-computing work around spatial interfaces, browser-based 3D, perspective, and systems whose visual output changes with environmental input.
 
-## Why it is here
+## Status
 
-The repository is part of my earlier creative-computing work around browser-based spatial experiences, location-aware visuals, and perceptual distortion with realtime 3D.
+Historical experiment. The repository is kept public as part of the progression towards my more recent realtime 3D and interactive-web work.
