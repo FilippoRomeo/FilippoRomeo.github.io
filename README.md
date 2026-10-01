@@ -1,20 +1,43 @@
-# Lip shaping
+# Lip Shaping
 
-A Three.js site using Vite and openAPI to request info about the user location.
+An experimental Three.js / WebGL study built with Vite. The scene combines spatial movement, glitch-like visual behaviour, geolocation, and solar-position calculations to make the environment respond to where and when it is viewed.
 
-The website shows what appear to be static square shapes in a sky-like environment, if we turn or move in our fixed point, we can see the shaps moving, and a glitch effect appear. It sends a get request to freeGeoIP.app, which returns a JSON document containing information relative to the user's location (lat and long). The library suncalc.js is used to calculate the sun position and place it in the scene so that when the page is accessed, we can see the sun set in a different part. The site is not mobile/location coordinate proof, but it can display the information.
+## Concept
 
-To install and start the master (ES6) branch
+The experience presents apparently static square forms inside a sky-like environment. As the viewer moves or changes orientation, the spatial relationship between those forms shifts and visual distortion appears.
 
-Due to poor result of the sunCalc library, I opted to write my own way to calculate the altitude and azimuth. [Reference](https://stackoverflow.com/questions/8708048/position-of-the-sun-given-time-of-day-latitude-and-longitude)]
+The original implementation also requested approximate latitude and longitude from a geolocation service, then used solar-position calculations to place the sun differently depending on location and time. After experimenting with SunCalc, the project also explored a custom altitude / azimuth calculation.
+
+This is an older creative-coding experiment, so third-party services referenced by the original implementation may no longer behave exactly as they did when it was built.
+
+## Stack
+
+- Three.js
+- Vite
+- JavaScript
+- WebGL
+- geolocation data
+- solar-position calculations
+
+## Run locally
 
 ```bash
-git clone https://github.com/FilippoRomeo/FilippoRomeo.github.io
+git clone https://github.com/FilippoRomeo/FilippoRomeo.github.io.git
 cd FilippoRomeo.github.io
-npm i
-npm start dev
+npm install
+npm run dev
 ```
 
-Visit localhost:3000
+For a production build:
 
-[View example on github](https://filipporomeo.github.io/)
+```bash
+npm run build
+```
+
+## Live experiment
+
+https://filipporomeo.github.io/
+
+## Why it is here
+
+The repository is part of my earlier creative-computing work around browser-based spatial experiences, location-aware visuals, and perceptual distortion with realtime 3D.
